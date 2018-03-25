@@ -1,5 +1,9 @@
 # @webpack-blocks/webpack - Changelog
 
+## Next Release
+
+- Added `setMode()` ([#255](https://github.com/andywer/webpack-blocks/issues/255))
+
 ## Next version
 
 - Added `when()` ([#242](https://github.com/andywer/webpack-blocks/issues/242))

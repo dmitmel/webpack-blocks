@@ -19,6 +19,7 @@ exports.when = core.when
 
 exports.createConfig = createConfig
 
+exports.setMode = setMode
 exports.addPlugins = addPlugins
 exports.customConfig = customConfig
 exports.defineConstants = require('./lib/defineConstants')
@@ -54,6 +55,13 @@ function createEmptyConfig (context, util) {
     },
     plugins: []
   })
+}
+
+/**
+ * @see https://webpack.js.org/concepts/mode
+ */
+function setMode (mode) {
+  return (context, util) => util.merge({ mode })
 }
 
 /**

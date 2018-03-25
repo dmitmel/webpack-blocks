@@ -20,12 +20,14 @@ function css (fileType, options = {}) {
     console.warn(`css(): You are using the deprecated 'fileType' parameter, 'options.exclude' or 'options.include'. Use match() instead.`)
   }
 
-  const cssOptions = _.omit(options, ['exclude', 'include', 'styleLoader'])
-  const loaders = [{ loader: 'css-loader', options: cssOptions }]
+  const loaders = []
 
   if (options.styleLoader !== false) {
-    loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
+    loaders.push({ loader: 'style-loader', options: options.styleLoader || {} })
   }
+
+  const cssOptions = _.omit(options, ['exclude', 'include', 'styleLoader'])
+  loaders.push({ loader: 'css-loader', options: cssOptions })
 
   return (context, util) => util.addLoader(
     Object.assign(
@@ -65,12 +67,15 @@ function cssModules (fileType, options = {}) {
       ? '[hash:base64:10]'
       : '[name]--[local]--[hash:base64:5]'
   }
-  const cssOptions = Object.assign(defaultCssOptions, _.omit(options, ['exclude', 'include', 'styleLoader']))
-  const loaders = [{ loader: 'css-loader', options: cssOptions }]
+
+  const loaders = []
 
   if (options.styleLoader !== false) {
-    loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
+    loaders.push({ loader: 'style-loader', options: options.styleLoader || {} })
   }
+
+  const cssOptions = Object.assign(defaultCssOptions, _.omit(options, ['exclude', 'include', 'styleLoader']))
+  loaders.push({ loader: 'css-loader', options: cssOptions })
 
   return (context, util) => util.addLoader(
     Object.assign(

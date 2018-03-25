@@ -8,11 +8,13 @@ function synthesizeMatch (fileType, options) {
   if (fileType) {
     match.test = fileType
   }
-  if (options && options.exclude) {
-    match.exclude = options.exclude
-  }
-  if (options && options.include) {
-    match.include = options.include
+  if (options) {
+    if (options.exclude) {
+      match.exclude = options.exclude
+    }
+    if (options.include) {
+      match.include = options.include
+    }
   }
 
   return match

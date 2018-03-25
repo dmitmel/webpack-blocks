@@ -4,6 +4,8 @@
  * @see https://github.com/babel/babel-loader
  */
 
+const webpackMerge = require('webpack-merge')
+
 module.exports = babel
 
 /**
@@ -18,24 +20,16 @@ function babel (options = {}) {
     cacheDirectory: true
   }, options)
 
-  const setter = context => prevConfig => {
-    context.babel = context.babel || {}
-
+  const mergeConfigs = context => prevConfig => {
     // Merge babel config into the one stored in context
-    context.babel = Object.assign(
-      {},
-      context.babel,
-      options,
-      options.plugins ? { plugins: (context.babel.plugins || []).concat(options.plugins) } : {},
-      options.presets ? { presets: (context.babel.presets || []).concat(options.presets) } : {}
-    )
+    context.babel = webpackMerge(context.babel, options)
     return prevConfig
   }
 
-  return Object.assign(setter, { post: postConfig })
+  return Object.assign(mergeConfigs, { post: addBabelLoader })
 }
 
-function postConfig (context, util) {
+function addBabelLoader (context, util) {
   const ruleConfig = Object.assign({
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,

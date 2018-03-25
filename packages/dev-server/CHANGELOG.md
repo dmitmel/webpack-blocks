@@ -1,5 +1,9 @@
 # @webpack-blocks/dev-server - Changelog
 
+## Next Release
+
+- Removed `NamedModulesPlugin` because webpack 4 automatically adds it in the `development` mode ([#255](https://github.com/andywer/webpack-blocks/issues/255))
+
 ## Next version
 
 - Removed `proxy()` ([#251](https://github.com/andywer/webpack-blocks/pull/251))

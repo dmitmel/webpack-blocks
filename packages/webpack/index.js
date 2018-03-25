@@ -126,11 +126,13 @@ function performance (performanceBudget) {
 }
 
 /**
- * @param {object} optimization
+ * @param {object} optimizationOptions
  * @see https://github.com/webpack/webpack/releases/tag/v4.0.0
  */
-function optimization (optimization) {
-  return (context, util) => util.merge({ optimization })
+function optimization (optimizationOptions) {
+  return (context, util) => util.merge({
+    optimization: optimizationOptions
+  })
 }
 
 /**

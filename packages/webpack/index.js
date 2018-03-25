@@ -61,7 +61,10 @@ function createEmptyConfig (context, util) {
  * @see https://webpack.js.org/concepts/mode
  */
 function setMode (mode) {
-  return (context, util) => util.merge({ mode })
+  return (context, util) => {
+    context.mode = mode;
+    return util.merge({ mode })
+  }
 }
 
 /**

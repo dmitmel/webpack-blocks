@@ -26,6 +26,7 @@ exports.defineConstants = require('./lib/defineConstants')
 exports.setEnv = require('./lib/setEnv')
 exports.entryPoint = entryPoint
 exports.performance = performance
+exports.optimization = optimization
 exports.resolve = resolve
 exports.resolveAliases = resolveAliases
 exports.setContext = setContext
@@ -62,7 +63,7 @@ function createEmptyConfig (context, util) {
  */
 function setMode (mode) {
   return (context, util) => {
-    context.mode = mode;
+    context.mode = mode
     return util.merge({ mode })
   }
 }
@@ -122,6 +123,14 @@ function performance (performanceBudget) {
   return (context, util) => util.merge({
     performance: performanceBudget
   })
+}
+
+/**
+ * @param {object} optimization
+ * @see https://github.com/webpack/webpack/releases/tag/v4.0.0
+ */
+function optimization (optimization) {
+  return (context, util) => util.merge({ optimization })
 }
 
 /**

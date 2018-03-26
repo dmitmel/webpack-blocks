@@ -1,9 +1,10 @@
-const { createConfig, entryPoint, performance, setOutput } = require('../../index')
+const { createConfig, entryPoint, performance, setMode, setOutput } = require('../../index')
 
 const elm = require('@webpack-blocks/elm')
 const path = require('path')
 
 module.exports = createConfig([
+  setMode('production'),
   entryPoint(
     path.join(__dirname, 'main.js')
   ),

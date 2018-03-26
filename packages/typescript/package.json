@@ -19,7 +19,6 @@
   "repository": "andywer/webpack-blocks",
   "bugs": "https://github.com/andywer/webpack-blocks/issues",
   "dependencies": {
-    "awesome-typescript-loader": "^3.5.0",
-    "typescript": "^2.7.2"
+    "awesome-typescript-loader": "^4.0.1"
   }
 }

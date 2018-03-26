@@ -8,6 +8,7 @@ const {
   env,
   group,
   performance,
+  setMode,
   setOutput,
   sourceMaps,
 
@@ -16,8 +17,7 @@ const {
   css,
   devServer,
   extractText,
-  typescript,
-  uglify
+  typescript
 } = require('webpack-blocks')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -39,7 +39,6 @@ const developmentConfig = () => group([
 
 const productionConfig = () => group([
   extractText(),
-  uglify(),
   addPlugins([
     new webpack.LoaderOptionsPlugin({
       minimize: true,
@@ -49,6 +48,7 @@ const productionConfig = () => group([
 ])
 
 module.exports = createConfig([
+  setMode(process.env.NODE_ENV || 'development'),
   babel(),
   typescript(),
   css.modules(),
@@ -58,9 +58,6 @@ module.exports = createConfig([
       template: './index.html'
     })
   ]),
-  defineConstants({
-    'process.env.NODE_ENV': process.env.NODE_ENV || 'development'
-  }),
   env('development', [
     entryPoint('./src/index.dev.js'),
     developmentConfig()

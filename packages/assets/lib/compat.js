@@ -2,7 +2,7 @@ module.exports = {
   synthesizeMatch
 }
 
-function synthesizeMatch (fileType, options) {
+function synthesizeMatch(fileType, options) {
   const match = {}
 
   if (fileType) {

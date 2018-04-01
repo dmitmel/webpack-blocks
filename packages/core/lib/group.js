@@ -10,13 +10,14 @@ module.exports = group
  * @param {Function[]} configSetters  Array of functions as returned by webpack blocks.
  * @return {Function}
  */
-function group (configSetters) {
+function group(configSetters) {
   assertConfigSetters(configSetters)
 
   const pre = getHooks(configSetters, 'pre')
   const post = getHooks(configSetters, 'post')
 
-  const groupBlock = context => config => invokeConfigSetters(configSetters, context, config)
+  const groupBlock = context => config =>
+    invokeConfigSetters(configSetters, context, config)
 
   return Object.assign(groupBlock, { pre, post })
 }

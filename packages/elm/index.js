@@ -12,10 +12,11 @@ module.exports = elm
  * @param {string}                  [options.cwd]           Custom location for your elm files.
  * @return {Function}
  */
-function elm (options = {}, isProduction) {
-  isProduction = typeof isProduction === 'boolean'
-    ? isProduction
-    : process.env.NODE_ENV === 'production'
+function elm(options = {}, isProduction) {
+  isProduction =
+    typeof isProduction === 'boolean'
+      ? isProduction
+      : process.env.NODE_ENV === 'production'
 
   const productionDefaultConfig = {
     hot: false,
@@ -31,7 +32,11 @@ function elm (options = {}, isProduction) {
   }
 
   const main = context => prevConfig => {
-    context.elm = Object.assign({}, context.elm, isProduction ? productionDefaultConfig : developmentDefaultConfig)
+    context.elm = Object.assign(
+      {},
+      context.elm,
+      isProduction ? productionDefaultConfig : developmentDefaultConfig
+    )
     context.elm.options = Object.assign(context.elm.options, options)
 
     // Return unchanged config (configuration will be created by the post hook)
@@ -41,7 +46,7 @@ function elm (options = {}, isProduction) {
   return Object.assign(main, { post: postConfig })
 }
 
-function postConfig (context, util) {
+function postConfig(context, util) {
   const elmLoader = {
     loader: 'elm-webpack-loader',
     options: context.elm.options
@@ -50,18 +55,21 @@ function postConfig (context, util) {
     loader: 'elm-hot-loader'
   }
 
-  const loaderConfig = Object.assign({
-    test: /\.elm$/,
-    exclude: [/elm-stuff/, /node_modules/],
-    use: context.elm.hot ? [elmHotLoader, elmLoader] : [elmLoader]
-  }, context.match)
+  const loaderConfig = Object.assign(
+    {
+      test: /\.elm$/,
+      exclude: [/elm-stuff/, /node_modules/],
+      use: context.elm.hot ? [elmHotLoader, elmLoader] : [elmLoader]
+    },
+    context.match
+  )
 
   return util.merge({
     resolve: {
-      extensions: [ '.elm' ]
+      extensions: ['.elm']
     },
     module: {
-      rules: [ loaderConfig ]
+      rules: [loaderConfig]
     }
   })
 }

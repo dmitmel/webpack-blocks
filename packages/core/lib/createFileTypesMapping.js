@@ -1,10 +1,10 @@
 module.exports = createFileTypesMapping
 
-function createFileTypesMapping (initialMapping) {
+function createFileTypesMapping(initialMapping) {
   let currentMapping = initialMapping
 
   const mapperMethods = {
-    all () {
+    all() {
       return currentMapping
     },
 
@@ -12,18 +12,18 @@ function createFileTypesMapping (initialMapping) {
      * @param {string} type   MIME type.
      * @return {RegExp|Function|string|array}
      */
-    get (type) {
+    get(type) {
       if (!(type in currentMapping)) {
         throw new Error(`FileTypes:get(): Type is not registered: ${type}`)
       }
-      return currentMapping[ type ]
+      return currentMapping[type]
     },
 
     /**
      * @param {string} type   MIME type.
      * @return {boolean}
      */
-    has (type) {
+    has(type) {
       return type in currentMapping
     },
 
@@ -35,32 +35,36 @@ function createFileTypesMapping (initialMapping) {
      * @example `fileType.add('application/javascript', /\.jsx?$/)`
      * @example `fileType.add({ 'application/javascript': [ /\.js$/, /\.jsx$/ ] })`
      */
-    add (type, condition) {
+    add(type, condition) {
       if (typeof type === 'string') {
         currentMapping = addOne(type, condition)
       } else if (typeof type === 'object') {
         currentMapping = addMultiple(type)
       } else {
-        throw new Error(`FileTypes:add(): Expected 1st param to be a string or object, but got: ${typeof type}`)
+        throw new Error(
+          `FileTypes:add(): Expected 1st param to be a string or object, but got: ${typeof type}`
+        )
       }
       return mapper
     }
   }
 
-  function FileTypeMapping (type) {
+  function FileTypeMapping(type) {
     return mapper.get(type)
   }
 
-  function addOne (type, condition) {
+  function addOne(type, condition) {
     if (!condition) {
-      throw new Error(`FileTypes:add(): Expected a 'condition' as 2nd param if 1st param is a string.`)
+      throw new Error(
+        `FileTypes:add(): Expected a 'condition' as 2nd param if 1st param is a string.`
+      )
     }
     return Object.assign({}, currentMapping, {
-      [ type ]: condition
+      [type]: condition
     })
   }
 
-  function addMultiple (types) {
+  function addMultiple(types) {
     return Object.assign({}, currentMapping, types)
   }
 

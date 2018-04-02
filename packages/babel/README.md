@@ -1,7 +1,7 @@
 # webpack-blocks - Babel 6+
 
 [![Gitter chat](https://badges.gitter.im/webpack-blocks.svg)](https://gitter.im/webpack-blocks)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![NPM Version](https://img.shields.io/npm/v/@webpack-blocks/babel.svg)](https://www.npmjs.com/package/@webpack-blocks/babel)
 
 This is the `babel` block providing Babel (Version 6+) configuration using the [babel-loader](https://github.com/babel/babel-loader).

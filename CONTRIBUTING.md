@@ -22,7 +22,7 @@ Running `npm install` in the repository's root directory will install the depend
 
 Running `npm test` in the repository's root directory will run all packages' tests. Run `npm test` in a package to test this package only.
 
-Just edit the code like you always do. Be aware that we automatically lint the code according to [JavaScript standard code style](https://github.com/feross/standard).
+Just edit the code like you always do. Be aware that we automatically format the code using [Prettier](https://prettier.io/).
 
 When adding a new package you might need to run `npm run postinstall` in the repository's root directory to update the links between packages depending on each other.
 
@@ -34,7 +34,7 @@ When adding a new package you might need to run `npm run postinstall` in the rep
 3. Do something awesome.
 4. Add / update tests.
 5. Update changelogs of all packages that you change. Use *Next release* as a version number.
-6. Push them and open a pull request. 
+6. Push them and open a pull request.
 
 
 ## More Information

@@ -9,7 +9,5 @@
     "jsx": "react"
   },
   "compileOnSave": false,
-  "files": [
-    "app.ts"
-  ]
+  "files": ["app.ts"]
 }

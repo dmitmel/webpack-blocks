@@ -38,32 +38,17 @@ function css(options = {}) {
  * @see https://github.com/webpack-contrib/css-loader
  */
 function cssModules(options = {}) {
-  const defaultCssOptions = {
-    modules: true,
-    importLoaders: 1,
-    localIdentName:
-      String(process.env.NODE_ENV) === 'production'
-        ? '[hash:base64:10]'
-        : '[name]--[local]--[hash:base64:5]'
-  }
-  const cssOptions = Object.assign(
-    defaultCssOptions,
-    _.omit(options, ['exclude', 'include', 'styleLoader'])
+  options = Object.assign(
+    {
+      modules: true,
+      importLoaders: 1,
+      localIdentName:
+        String(process.env.NODE_ENV) === 'production'
+          ? '[hash:base64:10]'
+          : '[name]--[local]--[hash:base64:5]'
+    },
+    options
   )
-  const loaders = [{ loader: 'css-loader', options: cssOptions }]
 
-  if (options.styleLoader !== false) {
-    loaders.unshift({ loader: 'style-loader', options: options.styleLoader || {} })
-  }
-
-  return (context, util) =>
-    util.addLoader(
-      Object.assign(
-        {
-          test: /\.css$/,
-          use: loaders
-        },
-        context.match
-      )
-    )
+  return css(options)
 }
